@@ -1,0 +1,233 @@
+/* Tailwind v4 full stack */
+@import 'tailwindcss';
+
+/* Payload-compatible dark variant */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------
+   THEME TOKENS
+-------------------------------- */
+@layer theme {
+  :root {
+    /* fonts */
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+
+    /* typography */
+    --text-base: 18px;
+    --leading-base: 32px;
+    --text-base-sm: 15px;
+    --leading-base-sm: 24px;
+
+    /* headings */
+    --h1-size: 64px;
+    --h1-leading: 70px;
+    --h1-size-lg: 42px;
+    --h1-leading-lg: 42px;
+    --h1-size-md: 38px;
+    --h1-leading-md: 38px;
+    --h1-size-sm: 32px;
+    --h1-leading-sm: 32px;
+
+    /* spacing */
+    --space-page: 45px;
+    --space-page-sm: 24px;
+    --space-p: 24px;
+    --space-p-sm: 18px;
+
+    /* colors (light) */
+    --color-bg: rgb(255 255 255);
+    --color-fg: rgb(0 0 0);
+    --color-muted: rgb(235 235 235);
+
+    /* ui */
+    --radius-sm: 4px;
+    --border-default: 1px solid var(--color-fg);
+  }
+
+  [data-theme='dark'] {
+    --color-bg: rgb(0 0 0);
+    --color-fg: rgb(255 255 255);
+    --color-muted: rgb(60 60 60);
+  }
+}
+
+/* ------------------------------
+   BASE STYLES (YOUR CSS)
+-------------------------------- */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    font-family: var(--font-sans);
+    background-color: inherit;
+    color: inherit;
+  }
+
+  @media (max-width: 1024px) {
+    html {
+      font-size: var(--text-base-sm);
+      line-height: var(--leading-base-sm);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  h1 {
+    margin: 40px 0;
+    font-size: var(--h1-size);
+    line-height: var(--h1-leading);
+    font-weight: 700;
+  }
+
+  @media (max-width: 1024px) {
+    h1 {
+      margin: 24px 0;
+      font-size: var(--h1-size-lg);
+      line-height: var(--h1-leading-lg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: var(--h1-size-md);
+      line-height: var(--h1-leading-md);
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: var(--h1-size-sm);
+      line-height: var(--h1-leading-sm);
+    }
+  }
+
+  p {
+    margin: var(--space-p) 0;
+  }
+
+  @media (max-width: 1024px) {
+    p {
+      margin: var(--space-p-sm) 0;
+    }
+  }
+
+  a {
+    color: currentColor;
+    text-decoration: none;
+  }
+
+  a:focus {
+    opacity: 0.8;
+    outline: none;
+  }
+
+  a:active {
+    opacity: 0.7;
+    outline: none;
+  }
+
+  svg {
+    vertical-align: middle;
+  }
+}
+
+/* ------------------------------
+   COMPONENTS (HOME)
+-------------------------------- */
+@layer components {
+  .home {
+    min-height: 100vh;
+    max-width: 1024px;
+    margin-inline: auto;
+    padding: var(--space-page);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    background-color: inherit;
+    color: inherit;
+  }
+
+  @media (max-width: 400px) {
+    .home {
+      padding: var(--space-page-sm);
+    }
+  }
+
+  .home-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-content h1 {
+    text-align: center;
+  }
+
+  .home-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .home-links a {
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    border: var(--border-default);
+  }
+
+  .home-link-admin {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  .home-link-docs {
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  .home-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 1024px) {
+    .home-footer {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+
+  .home-footer p {
+    margin: 0;
+  }
+
+  .home-code-link {
+    padding: 0 0.5rem;
+    background: var(--color-muted);
+    border-radius: var(--radius-sm);
+  }
+}

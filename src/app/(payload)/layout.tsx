@@ -9,6 +9,9 @@ import React from 'react'
 import { importMap } from './admin/importMap.js'
 import './custom.scss'
 
+import '@/styles/payloadStyles.css'
+import { SystemThemeScript } from '@/utils/SystemThemeScript'
+
 type Args = {
   children: React.ReactNode
 }
@@ -22,10 +25,17 @@ const serverFunction: ServerFunctionClient = async function (args) {
   })
 }
 
-const Layout = ({ children }: Args) => (
-  <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
-    {children}
-  </RootLayout>
-)
+const Layout = ({ children }: Args) => {
+  // Read theme cookie and pass as attribute to <html> through RootLayout
+  // (RootLayout is provided by @payloadcms/next/layouts and doesn't expose html props directly)
+  // Instead, ensure we suppress hydration warnings here and let SystemThemeScript control the attribute.
+  return (
+    <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
+      <SystemThemeScript />
+
+      {children}
+    </RootLayout>
+  )
+}
 
 export default Layout

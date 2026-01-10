@@ -5,7 +5,6 @@ import React from 'react'
 import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
-import './styles.css'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -17,21 +16,23 @@ export default async function HomePage() {
 
   return (
     <div className="home">
-      <div className="content">
+      <div className="home-content">
         <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
+          <source srcSet="/logo.svg" />
           <Image
             alt="Payload Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
+            height={54}
+            src="/logo.svg"
+            width={157}
+            className="dark:invert"
+            priority
           />
         </picture>
         {!user && <h1>Welcome to your new project.</h1>}
         {user && <h1>Welcome back, {user.email}</h1>}
-        <div className="links">
+        <div className="home-links">
           <a
-            className="admin"
+            className="home-link-admin"
             href={payloadConfig.routes.admin}
             rel="noopener noreferrer"
             target="_blank"
@@ -39,7 +40,7 @@ export default async function HomePage() {
             Go to admin panel
           </a>
           <a
-            className="docs"
+            className="home-link-docs"
             href="https://payloadcms.com/docs"
             rel="noopener noreferrer"
             target="_blank"
@@ -48,9 +49,9 @@ export default async function HomePage() {
           </a>
         </div>
       </div>
-      <div className="footer">
+      <div className="home-footer">
         <p>Update this page by editing</p>
-        <a className="codeLink" href={fileURL}>
+        <a className="home-code-link" href={fileURL}>
           <code>app/(frontend)/page.tsx</code>
         </a>
       </div>
