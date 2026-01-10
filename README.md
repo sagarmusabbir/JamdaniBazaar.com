@@ -1,8 +1,89 @@
-# Payload Blank Starter
+# Payload Tailwind v4 Template (Payload CMS)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/payloadcms/payload/tree/main/templates/with-vercel-postgres&project-name=payload-project&env=PAYLOAD_SECRET&build-command=pnpm%20run%20ci&stores=%5B%7B%22type%22:%22postgres%22%7D,%7B%22type%22:%22blob%22%7D%5D)
+A starter template that combines Payload CMS with Next.js and Tailwind CSS v4. Includes:
 
-This template comes configured with the bare minimum to get started on anything you need.
+- Payload CMS (configured for Vercel/Postgres)
+- Tailwind CSS v4 (preconfigured)
+- SystemThemeScript for theme-aware favicons and data-theme support
+- Straightforward deployment instructions for Vercel
+
+## Quick start
+
+1. Clone the repo
+
+   git clone https://github.com/sagarmusabbir/payload-bracketui.git
+   cd payload-bracketui
+
+2. Copy environment variables
+
+   cp .env.example .env
+   - Set `POSTGRES_URL`, `PAYLOAD_SECRET`, and `BLOB_READ_WRITE_TOKEN` (if using blob storage)
+
+3. Install and run locally
+
+   pnpm install
+   pnpm dev
+
+4. Open http://localhost:3000 and visit /admin to create your first admin user.
+
+## Theming & Favicons — SystemThemeScript ✅
+
+This project includes `SystemThemeScript` (in `src/utils/SystemThemeScript.tsx`) which:
+
+- Injects media-specific favicon links (light/dark SVGs) into the document head
+- Sets `data-theme="dark"|"light"` on the `<html>` element based on system preference
+- Updates a fallback non-media favicon linking to the correct themed SVG
+
+Usage:
+
+- The script is already included in the frontend root layout (`src/app/(frontend)/layout.tsx`).
+- To change icons, update `public/favicon-light.svg`, `public/favicon-dark.svg`, and `public/favicon.svg`.
+- For pixel-perfect raster fallbacks, add PNGs and an `.ico` to `public/` and register them in `src/payload.config.ts` under `admin.meta.icons` with `sizes` and `media` attributes as needed.
+
+## Tests & Build
+
+- Generate Payload types (after collection changes):
+
+  pnpm run generate:types
+
+- Run unit/integration tests (Vitest):
+
+  pnpm run test:int
+
+  If tests fail due to missing `dotenv`, install it as a dev dependency:
+
+  pnpm add -D dotenv
+
+- Run end-to-end (Playwright):
+
+  pnpm run test:e2e
+
+- Build for production:
+
+  pnpm run build
+
+## Deployment
+
+### Vercel (recommended)
+
+- Click the Deploy with Vercel button in the original template or connect your forked repo to Vercel.
+- Set the required environment variables: `PAYLOAD_SECRET`, `POSTGRES_URL`, `BLOB_READ_WRITE_TOKEN`.
+- Build command: `pnpm run ci` (runs migrations and build).
+
+
+## Notes & Maintenance
+
+- Lint warnings are present for unused variables in a few files — run `pnpm run lint` and clean up as desired.
+- The `SystemThemeScript` provides theme consistency between browser UI and app theme; tweak it in `src/utils/SystemThemeScript.tsx` if you need custom behavior.
+
+---
+
+If you'd like, I can also:
+
+- Generate standard PNG/ICO favicon fallbacks and add `admin.meta.icons` entries for them, or
+- Add a CI job that runs lint/tests and builds the app on push.
+
+Enjoy building with Payload + Tailwind v4! 🎯
 
 ## Quick start
 
@@ -47,15 +128,6 @@ After you click the `Deploy` button above, you'll want to have standalone copy o
 
 That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
 
-#### Docker (Optional)
-
-If you prefer to use Docker for local development instead of a local Postgres instance, the provided docker-compose.yml file can be used.
-
-To do so, follow these steps:
-
-- Modify the `POSTGRES_URL` in your `.env` file to `postgres://postgres@localhost:54320/<dbname>`
-- Modify the `docker-compose.yml` file's `POSTGRES_DB` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
 
 ## How it works
 
@@ -107,15 +179,6 @@ pnpm payload migrate
 
 This command will check for any migrations that have not yet been run and try to run them and it will keep a record of migrations that have been run in the database.
 
-### Docker
-
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
-
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
 
 ## Questions
 
