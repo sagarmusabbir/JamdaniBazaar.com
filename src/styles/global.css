@@ -10,7 +10,8 @@
 @layer theme {
   :root {
     /* fonts */
-    --font-sans: var(--font-geist-sans);
+    --font-sans: var(--font-outfit);
+    --font-serif: var(--font-outfit);
     --font-mono: var(--font-geist-mono);
 
     /* typography */
@@ -68,6 +69,9 @@
     background-color: var(--color-bg);
     color: var(--color-fg);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
   }
 
   body {
