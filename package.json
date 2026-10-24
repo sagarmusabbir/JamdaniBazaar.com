@@ -35,10 +35,9 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
-    "@payloadcms/db-vercel-postgres": "3.70.0",
+    "@payloadcms/db-postgres": "~3.70.0",
     "@payloadcms/next": "3.70.0",
     "@payloadcms/richtext-lexical": "3.70.0",
-    "@payloadcms/storage-vercel-blob": "3.70.0",
     "@payloadcms/ui": "3.70.0",
     "@tailwindcss/postcss": "^4.1.18",
     "cross-env": "^7.0.3",

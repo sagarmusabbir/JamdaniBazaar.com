@@ -6,7 +6,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://jamdanibaz
 )
 export const SITE_DESCRIPTION =
   'JamdaniBazaar is your guide to Jamdani, the handwoven muslin textile of Bangladesh. Learn its history, spot the real thing and care for it.'
-export const CONTACT_EMAIL = 'hello@jamdanibazaar.com'
+export const CONTACT_EMAIL = 'hello@thirdbracket.co.uk'
 
 /** Publisher entity. Exactly as specified; do not add fields without reason. */
 export const ORGANIZATION = {
